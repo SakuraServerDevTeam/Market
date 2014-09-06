@@ -1,0 +1,13 @@
+name: Market
+version: 0.3.5
+author: toyblocks
+
+depend: [Liblocks, ChestShop]
+
+main: com.gmail.spica.toyblocks.market.Main
+
+commands:
+  market:
+    description: none
+    usage: none
+    aliases: mk
