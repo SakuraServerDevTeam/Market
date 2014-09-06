@@ -6,7 +6,6 @@ import static com.gmail.spica.toyblocks.market.util.FileUtil.getMarketSignList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
@@ -22,22 +21,26 @@ public class SearchPCommand {
         }
         if (args.length < 3) {
             sender.sendMessage("§c/mk s p <player/*> [itemtype]");
-                return;
+            return;
         }
         HashMap<MarketSign, Double> map = new HashMap<>();
         {
             ArrayList<MarketSign> list = getMarketSignList();
             for (int i = 0; i < list.size(); ++i) {
                 if (args.length < 4) {
-                    if (list.get(i).getOwner().equals(args[2]) || args[2].equals("*")) {
-                        double priceStack = list.get(i).getSPrice() / list.get(i).getAmount() * 64;
-                        map.put(list.get(i), priceStack);
-                    }
-                } else {
-                    if (args[3].equals(list.get(i).type.name)) {
+                    if (list.get(0).type != null) {
                         if (list.get(i).getOwner().equals(args[2]) || args[2].equals("*")) {
                             double priceStack = list.get(i).getSPrice() / list.get(i).getAmount() * 64;
                             map.put(list.get(i), priceStack);
+                        }
+                    }
+                } else {
+                    if (list.get(0).type != null) {
+                        if (args[3].equals(list.get(i).type.name)) {
+                            if (list.get(i).getOwner().equals(args[2]) || args[2].equals("*")) {
+                                double priceStack = list.get(i).getSPrice() / list.get(i).getAmount() * 64;
+                                map.put(list.get(i), priceStack);
+                            }
                         }
                     }
                 }
