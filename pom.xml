@@ -4,7 +4,7 @@
 
     <groupId>com.gmail.spica.toyblocks</groupId>
     <artifactId>Market</artifactId>
-    <version>0.3.5</version>
+    <version>0.4.0</version>
     <packaging>jar</packaging>
 
     <name>Market</name>
