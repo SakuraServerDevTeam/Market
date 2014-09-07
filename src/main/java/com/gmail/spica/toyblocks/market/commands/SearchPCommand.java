@@ -28,14 +28,14 @@ public class SearchPCommand {
             ArrayList<MarketSign> list = getMarketSignList();
             for (MarketSign ms : list) {
                 if (args.length < 4) {
-                    if (ms.type != null) {
+                    if (ms.getOwner() != null) {
                         if (ms.getOwner().equals(args[2]) || args[2].equals("*")) {
                             double priceStack = ms.getSPrice() / ms.getAmount() * 64;
                             map.put(ms, priceStack);
                         }
                     }
                 } else {
-                    if (list.get(0).type != null) {
+                    if (ms.getOwner() != null) {
                         if (args[3].equals(ms.type.name)) {
                             if (ms.getOwner().equals(args[2]) || args[2].equals("*")) {
                                 double priceStack = ms.getSPrice() / ms.getAmount() * 64;

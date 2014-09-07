@@ -53,12 +53,12 @@ public class SearchBCommand {
         HashMap<MarketSign, Double> map = new HashMap<>();
         {
             ArrayList<MarketSign> list = getMarketSignList();
-            for (int i = 0; i < list.size(); ++i) {
-                if (!(list.get(i).isEmpty()) && list.get(i).getBPrice() != 0) {
-                    if (list.get(i).getItem() == Material.getMaterial(id)) {
-                        if (list.get(i).getDamage() == damage) {
-                            double priceStack = list.get(i).getBPrice() / list.get(i).getAmount() * 64;
-                            map.put(list.get(i), priceStack);
+            for (MarketSign ms: list) {
+                if (!(ms.isEmpty()) && ms.getBPrice() != 0) {
+                    if (ms.getItem() == Material.getMaterial(id)) {
+                        if (ms.getDamage() == damage) {
+                            double priceStack = ms.getBPrice() / ms.getAmount() * 64;
+                            map.put(ms, priceStack);
                         }
                     }
                 }
