@@ -26,20 +26,20 @@ public class SearchPCommand {
         HashMap<MarketSign, Double> map = new HashMap<>();
         {
             ArrayList<MarketSign> list = getMarketSignList();
-            for (int i = 0; i < list.size(); ++i) {
+            for (MarketSign ms : list) {
                 if (args.length < 4) {
-                    if (list.get(0).type != null) {
-                        if (list.get(i).getOwner().equals(args[2]) || args[2].equals("*")) {
-                            double priceStack = list.get(i).getSPrice() / list.get(i).getAmount() * 64;
-                            map.put(list.get(i), priceStack);
+                    if (ms.type != null) {
+                        if (ms.getOwner().equals(args[2]) || args[2].equals("*")) {
+                            double priceStack = ms.getSPrice() / ms.getAmount() * 64;
+                            map.put(ms, priceStack);
                         }
                     }
                 } else {
                     if (list.get(0).type != null) {
-                        if (args[3].equals(list.get(i).type.name)) {
-                            if (list.get(i).getOwner().equals(args[2]) || args[2].equals("*")) {
-                                double priceStack = list.get(i).getSPrice() / list.get(i).getAmount() * 64;
-                                map.put(list.get(i), priceStack);
+                        if (args[3].equals(ms.type.name)) {
+                            if (ms.getOwner().equals(args[2]) || args[2].equals("*")) {
+                                double priceStack = ms.getSPrice() / ms.getAmount() * 64;
+                                map.put(ms, priceStack);
                             }
                         }
                     }

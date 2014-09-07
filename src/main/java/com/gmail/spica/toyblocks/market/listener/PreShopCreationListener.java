@@ -11,6 +11,7 @@ import static com.gmail.spica.toyblocks.market.util.BlockUtil.isMarketShop;
 import static com.gmail.spica.toyblocks.market.util.FileUtil.getItemType;
 import static com.gmail.spica.toyblocks.market.util.FileUtil.getMarketSign;
 import static com.gmail.spica.toyblocks.market.util.FileUtil.getPlayerData;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -49,7 +50,11 @@ public class PreShopCreationListener implements Listener {
         ItemType it = getItemType(getOppSideSign(e.getSign()).getLine(1));
         byte line = 3;
         ItemStack is = getItem(e.getSignLine(line));
-        if (!it.containsItem(is.getType())) {
+        boolean bedrock = false;
+        if (it.containsItem(Material.BEDROCK)) {
+            bedrock = true;
+        }
+        if (!it.containsItem(is.getType()) ^ bedrock) {
             p.sendMessage("§cそのアイテムはここでは出品できません!");
             e.getSign().getBlock().breakNaturally();
             e.setOutcome(PreShopCreationEvent.CreationOutcome.NO_CHEST);
